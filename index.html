@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>刘力 - 高级算法专家 / 数据算法总监</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0891b2;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg: #ffffff;
+            --bg-secondary: #f9fafb;
+            --border: #e5e7eb;
+            --accent: #f59e0b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans SC', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        header .title {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            margin-bottom: 15px;
+        }
+
+        header .location {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .contact-info a:hover {
+            opacity: 1;
+        }
+
+        /* Sections */
+        section {
+            padding: 50px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 5px;
+            height: 28px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* About */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .about-card {
+            background: var(--bg-secondary);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .about-card h3 {
+            color: var(--text);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .about-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        /* Core Competencies */
+        .competencies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .competency-item {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            padding: 25px;
+            border-radius: 10px;
+            transition: transform 0.2s;
+        }
+
+        .competency-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .competency-item h3 {
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .competency-item ul {
+            list-style: none;
+        }
+
+        .competency-item li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 8px;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .competency-item li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Experience Items */
+        .experience-item {
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 10px;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .company {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .role {
+            color: var(--primary);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .period {
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 0.95rem;
+            background: var(--bg-secondary);
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+
+        .description {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .sub-item {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 3px solid var(--primary);
+        }
+
+        .sub-item h4 {
+            color: var(--text);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sub-item ul {
+            list-style: none;
+        }
+
+        .sub-item li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 8px;
+            color: var(--text);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .sub-item li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Metrics */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-category {
+            background: var(--bg-secondary);
+            padding: 25px;
+            border-radius: 10px;
+            border-top: 4px solid var(--primary);
+        }
+
+        .skill-category h4 {
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 8px;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .skill-category li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Education */
+        .education-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 20px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .school {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .degree {
+            color: var(--text-light);
+        }
+
+        .honors {
+            color: var(--accent);
+            font-size: 0.95rem;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Project Showcase */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: box-shadow 0.2s;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 20px;
+        }
+
+        .project-header h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .project-header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .project-body {
+            padding: 20px;
+        }
+
+        .project-body ul {
+            list-style: none;
+        }
+
+        .project-body li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 10px;
+            color: var(--text);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .project-body li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+        }
+
+        .tech-tag {
+            background: var(--bg-secondary);
+            color: var(--primary-dark);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .experience-header {
+                flex-direction: column;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>刘力</h1>
+            <p class="title">高级算法专家 / 数据算法总监</p>
+            <p class="location">📍 上海 | 32 岁 | 湖北人</p>
+            <div class="contact-info">
+                <a href="mailto:liuli.ll9412@gmail.com">📧 liuli.ll9412@gmail.com</a>
+                <a href="https://scholar.google.com/citations?user=zO5iemAAAAAJ&hl=zh-CN" target="_blank">🎓 Google Scholar</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- 关于我 -->
+        <section>
+            <h2 class="section-title">关于我</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>🎯 核心定位</h3>
+                    <p><span class="highlight">"模型中最懂数据的，数据中最懂模型的"</span>——能精准定义模型需求与数据基建的接口，打通算法研发与量产落地的技术壁垒。</p>
+                </div>
+                <div class="about-card">
+                    <h3>🚀 技术根基</h3>
+                    <p>AI 算法研发出身，发表多篇 CCF-A 类顶会论文。2022 年 Tesla 提出 Data-Driven 范式后，全面转向<strong>数据体系建设与基座模型研发</strong>。</p>
+                </div>
+                <div class="about-card">
+                    <h3>🌍 多元视野</h3>
+                    <p>穿越<strong>阿里（互联网）→ 蔚来（新势力）→ 小米（科技制造）→ 小鹏（AI 驱动）</strong>，理解不同模式下的技术路线与工程化方法论。</p>
+                </div>
+                <div class="about-card">
+                    <h3>💡 核心认知</h3>
+                    <p>数据是"经营思维"下的慢活，基座模型是"规模法则"下的快跑。<strong>模型与数据的协同迭代</strong>，才是自动驾驶迈向 L4 的核心引擎。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 核心能力 -->
+        <section>
+            <h2 class="section-title">核心能力</h2>
+            <div class="competencies-grid">
+                <div class="competency-item">
+                    <h3>🤖 懂模型</h3>
+                    <ul>
+                        <li>AI 算法研发出身，发表 CCF-A 顶会论文</li>
+                        <li>主导基座模型研发（Uni-Backbone、Omni）</li>
+                        <li>理解模型需要什么样的数据</li>
+                        <li>能设计最优模型架构与训练范式</li>
+                    </ul>
+                </div>
+                <div class="competency-item">
+                    <h3>📊 懂数据</h3>
+                    <ul>
+                        <li>完整穿越"算法→真值→数据"全栈技术链</li>
+                        <li>建设过千万级数据产线（25 万 Clips/日）</li>
+                        <li>理解数据规模化生产与质量保证</li>
+                        <li>累计生产 1000W+ Clips，交付 300W+ Clips</li>
+                    </ul>
+                </div>
+                <div class="competency-item">
+                    <h3>🔄 懂研发闭环</h3>
+                    <ul>
+                        <li>构建 SIL 评测体系，问题闭环效率提升 5 倍</li>
+                        <li>算法迭代周期缩短 40%，重大版本 0 回退</li>
+                        <li>从数据积累→产线建设→模型能力完整闭环</li>
+                        <li>验证自动驾驶到机器人的方法论迁移</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 工作经历 -->
+        <section>
+            <h2 class="section-title">工作经历</h2>
+
+            <!-- 小鹏汽车 -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <span class="company">小鹏汽车</span>
+                        <span class="role"> | 数据算法组负责人 / 算法总监</span>
+                    </div>
+                    <span class="period">2025.07 - 至今</span>
+                </div>
+                <p class="description">实线管理北京/上海/广州 30+ 人研发团队，负责基座模型 + 数据闭环体系建设，围绕 Omni 多模态模型、合成数据与世界模型、自驾云端大模型产线、机器人 VLA 四大方向构建 AI 基础设施。</p>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">30+</div>
+                        <div class="metric-label">团队规模</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">850T+</div>
+                        <div class="metric-label">多模态数据</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">7.2T+</div>
+                        <div class="metric-label">Token 产量</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">10x</div>
+                        <div class="metric-label">推理效率提升</div>
+                    </div>
+                </div>
+
+                <div class="sub-item">
+                    <h4>🎯 Omni 多模态基座模型体系</h4>
+                    <ul>
+                        <li><strong>技术主线：</strong>以视觉为核心锚点，统一处理 Action、音频、视频、3D 各模态，实现模态融合与能力外溢</li>
+                        <li><strong>VCOT_2D（视觉语言模型）：</strong>RGB+Edge 协同训练，FID/FVD 显著改善；C3 压缩 10 倍，推理效率提升 2-3 倍；图文交错生成</li>
+                        <li><strong>VCOT_3D（三维视觉模型）：</strong>3DGS+VTM 融合，增强生成图像几何一致性；GS 输入使生成稳定性大幅提升</li>
+                        <li><strong>Audio 多模态模型：</strong>基于 Qwen3-VL-2B 的 MTP 版本，词表扩充保留文本对话能力；实现 ASR→T2T→TTS 端到端语音交互</li>
+                    </ul>
+                </div>
+
+                <div class="sub-item">
+                    <h4>🌍 世界模型与训练闭环（HWS 高保真世界仿真）</h4>
+                    <ul>
+                        <li><strong>技术定位：</strong>基于 3DGS 的纯视觉世界仿真器，打通「预测→几何→渲染」闭环，对标 Nvidia Isaac Sim</li>
+                        <li><strong>核心能力：</strong>静态 3DGS 重建、动态新视角生成、多目标轨迹编辑、光照/天气/自车行为编辑</li>
+                        <li><strong>业务交付：</strong>L2 强标/AEB 合成数据、海外场景数据生成、多款车型 POI 数据资产生产</li>
+                        <li><strong>26 年规划：</strong>HWS-1.0 几何一致性提升 → HWS-2.0 动态目标重建 → HWS-3.0 多模态条件注入生成</li>
+                    </ul>
+                </div>
+
+                <div class="sub-item">
+                    <h4>☁️ 自驾云端大模型产线</h4>
+                    <ul>
+                        <li><strong>主线交付：</strong>搭建云端 VLA 大模型系统，建立云端真值和 AutoTag 体系，保障 L2 强标、市场问题挽回等专项数据供给</li>
+                        <li><strong>Occ 产线：</strong>全量 backfill 数据规模持续扩大，存储占用大幅优化，标注精度与一致性显著提升</li>
+                        <li><strong>Dynamic 产线：</strong>支持检测距离扩展（200m vs 行业 150m），纯视觉产线适配海外场景，AEB 预标产线上线</li>
+                        <li><strong>Static 产线：</strong>新版重定位算法上线，海外不居中数据优化效果显著</li>
+                    </ul>
+                </div>
+
+                <div class="sub-item">
+                    <h4>🤖 机器人 VLA（视觉 - 语言 - 动作端到端系统）</h4>
+                    <ul>
+                        <li><strong>系统架构：</strong>从 0 到 1 构建「感知编码器 + 多模态大模型 + 动作解码器」三位一体端到端架构，支持自然语言指令→机器人动作直接映射</li>
+                        <li><strong>数据闭环：</strong>确立「互联网图文（学语义）+ 大规模第一人称视频（学物理常识）+ 高质量真机遥操作数据（学硬件适配）」技术路径</li>
+                        <li><strong>遥操作采集系统：</strong>搭建主从遥操作平台，实现 VR/手柄/动捕多模态输入，完成视觉→控制信号端到端链路</li>
+                        <li><strong>人体动作捕捉：</strong>高精度动捕（数千小时）+ 低精度自研 4 路鱼眼阵列（年采数万小时）+ 互联网数据（数万小时）</li>
+                        <li><strong>世界模型集成：</strong>融合 3DGS 场景重建与动态新视角合成，支持机器人任务规划中的场景理解与轨迹预测</li>
+                        <li><strong>训练范式验证：</strong>「工厂数据预训练 + 实验室数据微调」策略最优，实现跨场景泛化与零样本迁移</li>
+                        <li><strong>方法论迁移：</strong>已完成从自动驾驶到机器人 VLA 的方法论验证，为物理 AI 规模化落地提供可复用基础设施</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 小米汽车 -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <span class="company">小米汽车</span>
+                        <span class="role"> | 真值系统团队负责人 / 算法专家</span>
+                    </div>
+                    <span class="period">2023.03 - 2025.07</span>
+                </div>
+                <p class="description">从 0 到 1 搭建自动驾驶部门云端算法体系，实线管理北京/上海/武汉三地 20+ 人研发团队，负责 L2 量产行泊功能迭代、端到端研发及 L3 预研的数据自动化生产与交付。</p>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">20+</div>
+                        <div class="metric-label">团队规模</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">25 万/日</div>
+                        <div class="metric-label">Clips 产能</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">1000W+</div>
+                        <div class="metric-label">累计生产</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">40%</div>
+                        <div class="metric-label">迭代周期缩短</div>
+                    </div>
+                </div>
+
+                <div class="sub-item">
+                    <h4>🏗️ 全栈真值产线体系</h4>
+                    <ul>
+                        <li>从 0 到 1 搭建"感知 - 拓扑 - 规划"三级支持 E2E 研发的全要素数据产线，具备 OD/LD/OCC/FS/TSR/Depth/Seg 等 15+ 种自动标注能力</li>
+                        <li>开发基于功能场景的真值地图 AutoLabel 数据交付方案，建成 25 万 Clips/日产能的自动化产线</li>
+                        <li>累计自动化生产重刷 1000W+ Clips，交付 PDP 数据 300W+ Clips</li>
+                        <li>建立 Pretrain+SFT 数据范式，粗标预训练 + 精标微调，显著提升迭代效率</li>
+                    </ul>
+                </div>
+
+                <div class="sub-item">
+                    <h4>📊 SIL 评测体系构建</h4>
+                    <ul>
+                        <li>建立行泊车感知全要素 SIL 评测系统，主导构建覆盖 12 类要素的评测体系</li>
+                        <li>设计 JIRA2SIL 自动化链路，实现问题闭环效率提升 5 倍，日均拦截异常 19 次</li>
+                        <li>建立标准化评测流程，算法迭代周期缩短 40%，保障重大版本 0 回退</li>
+                    </ul>
+                </div>
+
+                <div class="sub-item">
+                    <h4>🧠 基座大模型技术突破（Uni-Backbone）</h4>
+                    <ul>
+                        <li><strong>Uni-Backbone 基座大模型：</strong>多任务联合预训练架构，显著提升检测、分割、深度估计等任务的表征共享与迁移能力</li>
+                        <li><strong>视觉 Depth 大模型：</strong>千万级自监督数据集，7V+4V 多摄像头融合，解决单一传感器失效下的深度估计问题</li>
+                        <li><strong>Rodecode 车道线大模型：</strong>HQMap+SDMAP Prior+ 激光底图+BEV 语义特征多级融合，雨雪雾暗光单一失效下可标注，标注成本降低 70%</li>
+                        <li><strong>多模态前融合双向时序模型：</strong>二阶段架构提升远距离召回精度（200m vs 行业 150m），支持 SR 显示快速新增类别标签</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 蔚来汽车 -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <span class="company">蔚来汽车</span>
+                        <span class="role"> | 自动驾驶算法专家</span>
+                    </div>
+                    <span class="period">2022.02 - 2023.03</span>
+                </div>
+                <ul class="achievements">
+                    <li><strong>4DGT 产线：</strong>LIDAR 真值自动化，降本 70%</li>
+                    <li><strong>AutoTriage 系统：</strong>问题定位准确率 93%</li>
+                </ul>
+            </div>
+
+            <!-- 阿里巴巴达摩院 -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <span class="company">阿里巴巴达摩院</span>
+                        <span class="role"> | 感知算法工程师</span>
+                    </div>
+                    <span class="period">2019.06 - 2022.02</span>
+                </div>
+                <ul class="achievements">
+                    <li>L4 小蛮驴物流小车安全小脑系统（L4 冗余架构）</li>
+                    <li>车端点云感知模块</li>
+                    <li>AutoPrune 工具：模型压缩率 20%</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 项目展示 -->
+        <section>
+            <h2 class="section-title">核心项目</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🤖 机器人 VLA 端到端系统</h3>
+                        <p>从 0 到 1 构建物理 AI 数据闭环</p>
+                    </div>
+                    <div class="project-body">
+                        <ul>
+                            <li>构建「感知编码器 + 多模态大模型 + 动作解码器」三位一体架构</li>
+                            <li>搭建主从遥操作平台，VR/手柄/动捕多模态输入</li>
+                            <li>高精度动捕 + 自研鱼眼阵列，年采集数万小时动作数据</li>
+                            <li>验证「工厂预训练 + 实验室微调」最优迁移策略</li>
+                            <li>实现跨场景泛化与零样本迁移能力</li>
+                        </ul>
+                        <div class="tech-tags">
+                            <span class="tech-tag">VLA</span>
+                            <span class="tech-tag">遥操作</span>
+                            <span class="tech-tag">模仿学习</span>
+                            <span class="tech-tag">3DGS</span>
+                            <span class="tech-tag">端到端控制</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🌍 HWS 高保真世界仿真</h3>
+                        <p>基于 3DGS 的合成数据平台</p>
+                    </div>
+                    <div class="project-body">
+                        <ul>
+                            <li>打通「VTM 预测→DA3 几何→HWS 渲染」完整闭环</li>
+                            <li>静态 3DGS 重建、动态新视角生成、多目标轨迹编辑</li>
+                            <li>支持光照/天气/自车行为/动态场景编辑</li>
+                            <li>交付 L2 强标/AEB 合成数据，海外场景数据生成</li>
+                            <li>对标 Nvidia Isaac Sim，支持机器人场景重建</li>
+                        </ul>
+                        <div class="tech-tags">
+                            <span class="tech-tag">3DGS</span>
+                            <span class="tech-tag">世界模型</span>
+                            <span class="tech-tag">合成数据</span>
+                            <span class="tech-tag">NeRF</span>
+                            <span class="tech-tag">SIL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🧠 Uni-Backbone 基座大模型</h3>
+                        <p>多任务联合预训练架构</p>
+                    </div>
+                    <div class="project-body">
+                        <ul>
+                            <li>Self-Supervised 训练，融合几何/语义/时序信息</li>
+                            <li>视觉 Depth 大模型：7V+4V 多摄像头融合</li>
+                            <li>Rodecode 车道线大模型：多级融合架构</li>
+                            <li>标注成本降低 70%，恶劣天气稳定运行</li>
+                            <li>支持新任务快速拓展（neck+head 新增）</li>
+                        </ul>
+                        <div class="tech-tags">
+                            <span class="tech-tag">基座模型</span>
+                            <span class="tech-tag">自监督学习</span>
+                            <span class="tech-tag">多任务学习</span>
+                            <span class="tech-tag">Depth Estimation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🎯 Omni 多模态 Token 产线</h3>
+                        <p>7.2T+ Token 生产能力</p>
+                    </div>
+                    <div class="project-body">
+                        <ul>
+                            <li>累计 850T+ 多模态原始数据（互联网 + 公开数据集）</li>
+                            <li>建成 VTM 多模态 Token 产线：Audio 241.2B、Image/Video 3.86T、Image-Text 3.14T</li>
+                            <li>C3 压缩产线：1280→96，输入序列减少 90%+，推理效率提升 2-3 倍</li>
+                            <li>完成 10+ 种方言、3600+ 小时语音数据收集</li>
+                            <li>支持图文交错生成、音频修改闭环</li>
+                        </ul>
+                        <div class="tech-tags">
+                            <span class="tech-tag">多模态</span>
+                            <span class="tech-tag">Token 化</span>
+                            <span class="tech-tag">数据产线</span>
+                            <span class="tech-tag">模型压缩</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 专业技能 -->
+        <section>
+            <h2 class="section-title">专业技能</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>🤖 机器人系统能力</h4>
+                    <ul>
+                        <li>VLA 端到端架构（视觉 - 语言 - 动作）</li>
+                        <li>遥操作数据采集与主从控制</li>
+                        <li>模仿学习与行为克隆</li>
+                        <li>世界模型与场景重建（3DGS/NeRF）</li>
+                        <li>多模态大模型（Action/Audio/Video/3D）</li>
+                        <li>零样本迁移与跨场景泛化</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4>🚗 全栈自动驾驶技术</h4>
+                    <ul>
+                        <li>算法研发（感知、预测、规划）</li>
+                        <li>数据闭环（真值产线、数据挖掘）</li>
+                        <li>基座模型（多模态预训练、世界模型）</li>
+                        <li>SIL 评测体系与自动化验证</li>
+                        <li>车端 - 云端协同架构</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4>👥 产线与团队管理</h4>
+                    <ul>
+                        <li>0 到 1 团队搭建（30+ 人规模）</li>
+                        <li>跨地域团队协作（北京/上海/广州/武汉）</li>
+                        <li>OKR 制定与落地</li>
+                        <li>技术方向规划与量产交付</li>
+                        <li>公司级 AI 战略对接</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4>📚 学术与工程结合</h4>
+                    <ul>
+                        <li>CCF-A 类顶会论文发表</li>
+                        <li>Google Scholar 学术主页</li>
+                        <li>前沿算法转化为量产落地</li>
+                        <li>技术汇报（小米/小鹏公司级）</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 教育背景 -->
+        <section>
+            <h2 class="section-title">教育背景</h2>
+            <div class="education-item">
+                <div>
+                    <span class="school">北京理工大学</span>
+                    <span class="degree"> | 信息与通信工程 硕士</span>
+                </div>
+                <span class="period">2012 - 2019</span>
+            </div>
+            <p class="honors">🏆 本硕期间 4 次荣获国家奖学金 | 小米有史以来最年轻的燃计划学员（中层管理干部）</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 刘力 | 高级算法专家 / 数据算法总监</p>
+            <p style="margin-top: 10px;">
+                <a href="mailto:liuli.ll9412@gmail.com">📧 liuli.ll9412@gmail.com</a>
+                <span style="margin: 0 10px;">|</span>
+                <a href="https://scholar.google.com/citations?user=zO5iemAAAAAJ&hl=zh-CN" target="_blank">🎓 Google Scholar</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
